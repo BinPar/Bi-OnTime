@@ -1,0 +1,19 @@
+{
+  "name": "Bi-OnTime",
+  "private": false,
+  "scripts": {
+    "start": "npm install;meteor --settings ./private/settings.json",
+    "NPM Install": "npm install",
+    "deploy": "cd .deploy;mupx deploy"
+  },
+  "dependencies": {
+    "casual": "^1.5.3",
+    "moment": "^2.14.1",
+    "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.1.0",
+    "react-addons-shallow-compare": "^15.1.0",
+    "react-custom-scrollbars": "^4.0.0",
+    "react-dom": "^15.1.0",
+    "react-mounter": "^1.2.0"
+  }
+}
