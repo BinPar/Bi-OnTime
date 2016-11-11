@@ -1,5 +1,5 @@
 import BPInstance from './bp';
-import GHWInstance from './gitHubWrapper';
+import GHWInstance from './github/gitHubWrapper';
 import UtilsInstance from './utils';
 import moment from 'moment';
 

@@ -104,6 +104,19 @@ export default class Estimacion extends React.Component {
         </tr>;
     }
 
+    miniTaskClick() {
+        const ISSUE = this.props.issue;
+
+        GH.estimateTask(ISSUE.repository.name, ISSUE.number, 0.5, (err, res) => {
+            if (err) {
+                alert("Error: " + err.reason);
+            } else {
+                console.log("ok", res);
+                FlowRouter.reload();
+            }
+        });
+    }
+
     saveEstimation() {
         const DURATION = this.state.durationValue.replace(",", ".");
 
@@ -124,25 +137,9 @@ export default class Estimacion extends React.Component {
     }
 
     sendRequest() {
-
-    }
-
-    onBlurDuration(e) {
-        this.setState({
-            durationValue: e.target.value
-        });
-    }
-
-    onBlurMoreInfo(e) {
-        this.setState({
-            requestValue: e.target.value
-        });
-    }
-
-    miniTaskClick() {
         const ISSUE = this.props.issue;
 
-        GH.estimateTask(ISSUE.repository.name, ISSUE.number, 0.5, (err, res) => {
+        GH.moreInfoClick(ISSUE.repository.name, ISSUE.number, (err, res) => {
             if (err) {
                 alert("Error: " + err.reason);
             } else {
@@ -164,16 +161,15 @@ export default class Estimacion extends React.Component {
         });
     }
 
-    requestMoreInfo() {
-        const ISSUE = this.props.issue;
+    onBlurDuration(e) {
+        this.setState({
+            durationValue: e.target.value
+        });
+    }
 
-        GH.moreInfoClick(ISSUE.repository.name, ISSUE.number, (err, res) => {
-            if (err) {
-                alert("Error: " + err.reason);
-            } else {
-                console.log("ok", res);
-                FlowRouter.reload();
-            }
+    onBlurMoreInfo(e) {
+        this.setState({
+            requestValue: e.target.value
         });
     }
 }

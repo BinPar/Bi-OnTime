@@ -1,25 +1,26 @@
 {
-  "name": "pruebas",
+  "name": "BI-OnTime",
   "private": true,
   "scripts": {
     "start": "meteor --settings ./private/settings.json"
   },
   "dependencies": {
+    "babel-runtime": "^6.18.0",
     "bcrypt": "^0.8.7",
     "bluebird": "^3.4.6",
     "casual": "^1.5.5",
     "components": "^0.1.0",
     "fiber": "^1.0.4",
-    "fibers": "^1.0.14",
-    "github": "^6.0.3",
+    "fibers": "^1.0.15",
+    "github": "^6.0.4",
     "jquery": "^3.1.0",
-    "meteor-node-stubs": "~0.2.0",
-    "moment": "^2.15",
+    "meteor-node-stubs": "^0.2.3",
+    "moment": "^2.16.0",
     "pixl-xml": "^1.0.9",
-    "react": "^15.3.0",
-    "react-bootstrap": "^0.30.3",
+    "react": "^15.3.2",
+    "react-bootstrap": "^0.30.6",
     "react-custom-scrollbars": "^4.0.0",
-    "react-dom": "^15.3.0",
+    "react-dom": "^15.3.2",
     "react-mounter": "^1.2.0"
   }
 }
