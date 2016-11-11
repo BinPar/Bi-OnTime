@@ -1,0 +1,20 @@
+{
+  "public": {
+    "title": "Pruebas React",
+    "oAuth": {
+      "github": {
+        "localCallBackUrl": "http://localhost:3000/_oauth/github",
+        "remoteCallBackUrl": "http://host/_oauth/github"
+      }
+    }
+  },
+  "private": {
+    "organization": "BinPar",
+    "oAuth": {
+      "github": {
+        "clientId": "657306a8ea02ba7d1ee5",
+        "secret": "04f0a2556c0d5332633fb8d19bb1bf785c7a16ab"
+      }
+    }
+  }
+}
