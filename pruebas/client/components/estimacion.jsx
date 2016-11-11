@@ -139,7 +139,7 @@ export default class Estimacion extends React.Component {
     sendRequest() {
         const ISSUE = this.props.issue;
 
-        GH.moreInfoClick(ISSUE.repository.name, ISSUE.number, (err, res) => {
+        GH.needMoreInfo(ISSUE.repository.name, ISSUE.number, this.state.requestValue, (err, res) => {
             if (err) {
                 alert("Error: " + err.reason);
             } else {
