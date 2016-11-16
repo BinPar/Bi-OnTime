@@ -27,7 +27,9 @@ export default class EmptyLayout extends React.Component {
 
 		return (
 			<div>
-				<Login/>
+				<div style={{margin: "10px"}}>
+					<Login/>
+				</div>
 
 				{this.props.content}
 			</div>

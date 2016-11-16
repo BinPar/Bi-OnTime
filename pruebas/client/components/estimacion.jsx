@@ -1,5 +1,5 @@
 import React from 'react';
-import {ControlLabel, FormGroup, FormControl, Glyphicon, InputGroup, ButtonGroup, Button, Label, Panel} from 'react-bootstrap';
+import {Popover, ButtonToolbar, OverlayTrigger, ControlLabel, FormGroup, FormControl, Glyphicon, InputGroup, Button, Label} from 'react-bootstrap';
 
 export default class Estimacion extends React.Component {
     constructor(props) {
@@ -11,8 +11,9 @@ export default class Estimacion extends React.Component {
             requestValue: null
         };
 
-        this.miniTaskClick = this.miniTaskClick.bind(this);
+        this.definePopUps();
 
+        this.miniTaskClick = this.miniTaskClick.bind(this);
         this.estimationClick = this.estimationClick.bind(this);
         this.onBlurDuration = this.onBlurDuration.bind(this);
         this.saveEstimation = this.saveEstimation.bind(this);
@@ -58,47 +59,17 @@ export default class Estimacion extends React.Component {
             <td>{utils.formatDateTime(new Date(ISSUE.created_at))}</td>
 
             <td>
-                <ButtonGroup>
-                    <Button onClick={this.miniTaskClick}>Minitarea</Button>
-                    <Button onClick={this.estimationClick}>Estimar</Button>
-                    <Button onClick={this.moreInfoClick}>Necesito más info.</Button>
-                </ButtonGroup>
-
-                {this.state.showPanel == "estimation" ?
-                    <FormGroup controlId="estimationGroup">
-                        <ControlLabel>Estimation</ControlLabel>
-                        <InputGroup>
-                            <FormControl type="text"
-                                         onBlur={this.onBlurDuration}
-                            />
-
-                            <InputGroup.Addon>
-                                <Glyphicon glyph="time" />
-                            </InputGroup.Addon>
-                        </InputGroup>
-
-                        <Button onClick={this.saveEstimation}>
-                            Save
-                        </Button>
-                    </FormGroup>
-                    : null
-                }
-
-                {this.state.showPanel == "moreInfo" ?
-                    <FormGroup controlId="moreInfoGroup">
-                        <ControlLabel>Request more info</ControlLabel>
-
-                        <FormControl componentClass="textarea"
-                                     placeholder="Request details..."
-                                     onBlur={this.onBlurMoreInfo}
-                        />
-
-                        <Button onClick={this.sendRequest}>
-                            Send
-                        </Button>
-                    </FormGroup>
-                    : null
-                }
+                <ButtonToolbar>
+                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.minitaskPopUp}>
+                        <Button>Minitarea</Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.doEstimationPopUp}>
+                        <Button>Estimar</Button>
+                    </OverlayTrigger>
+                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.requestInfoPopUp}>
+                        <Button>Necesito más info.</Button>
+                    </OverlayTrigger>
+                </ButtonToolbar>
             </td>
 
         </tr>;
@@ -114,6 +85,20 @@ export default class Estimacion extends React.Component {
                 console.log("ok", res);
                 FlowRouter.reload();
             }
+        });
+    }
+
+    estimationClick() {
+        this.setState({
+            showPanel: this.state.showPanel != "estimation" ? "estimation" : null
+        });
+
+
+    }
+
+    moreInfoClick() {
+        this.setState({
+            showPanel: this.state.showPanel != "moreInfo" ? "moreInfo" : null
         });
     }
 
@@ -149,18 +134,6 @@ export default class Estimacion extends React.Component {
         });
     }
 
-    estimationClick() {
-        this.setState({
-            showPanel: this.state.showPanel != "estimation" ? "estimation" : null
-        });
-    }
-
-    moreInfoClick() {
-        this.setState({
-            showPanel: this.state.showPanel != "moreInfo" ? "moreInfo" : null
-        });
-    }
-
     onBlurDuration(e) {
         this.setState({
             durationValue: e.target.value
@@ -171,5 +144,45 @@ export default class Estimacion extends React.Component {
         this.setState({
             requestValue: e.target.value
         });
+    }
+
+    definePopUps() {
+        this.minitaskPopUp = (
+            <Popover id="popover-trigger-click" title="Minitask">
+                Mark for 30 minutes. You sure (Y/N)?
+            </Popover>);
+
+        this.doEstimationPopUp = (
+            <Popover id="popover-trigger-click" title="Estimation">
+                <FormGroup controlId="estimationGroup">
+                    <InputGroup>
+                        <FormControl type="text"
+                                     onBlur={this.onBlurDuration}
+                        />
+
+                        <InputGroup.Addon>
+                            <Glyphicon glyph="time"/>
+                        </InputGroup.Addon>
+                    </InputGroup>
+
+                    <Button onClick={this.saveEstimation}>
+                        Save
+                    </Button>
+                </FormGroup>
+            </Popover>);
+
+        this.requestInfoPopUp = (
+            <Popover id="popover-trigger-click" title="Request more info">
+                <FormGroup controlId="moreInfoGroup">
+                    <FormControl componentClass="textarea"
+                                 placeholder="Request details..."
+                                 onBlur={this.onBlurMoreInfo}
+                    />
+
+                    <Button onClick={this.sendRequest}>
+                        Send
+                    </Button>
+                </FormGroup>
+            </Popover>);
     }
 }

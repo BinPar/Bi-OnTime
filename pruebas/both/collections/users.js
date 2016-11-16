@@ -30,13 +30,12 @@ export default class Users  {
 				label: "eMail",
 				regEx: SimpleSchema.RegEx.Email
 			},
-			/*
 			"emails.$.verified": {
 				type: Boolean,
 				label: "Verified",
-				defaultValue: false
+				defaultValue: false,
+				optional: true
 			},
-			*/
 			createdDate: {
 				type: Date,
 				label: "Creation Date",
@@ -78,13 +77,4 @@ export default class Users  {
 		});
 
 	}
-
-	/*
-	query_getUser(userId, targetId) {
-		//if (!Roles.userIsInRole(userId, ['superuser', 'admin'])) throw new Meteor.Error(401, `Access denied for user: ${userId}`);
-		check(targetId, String);
-
-		return Meteor.users.find({_id: targetId}, {limit: 300});
-	}
-	*/
 }

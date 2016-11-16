@@ -31,7 +31,7 @@ export default class Estimaciones extends TrackerReact(React.Component) {
 
     render() {
         if (!Meteor.userId()) {
-            return <div>No tienes acceso.</div>
+            return <div>No tienes acceso.</div>;
         }
 
         if (!this.state.issuesLoaded) {
@@ -39,8 +39,7 @@ export default class Estimaciones extends TrackerReact(React.Component) {
         }
 
         return <div>
-            <h3>Estimaciones pendientes</h3>
-            <Table responsive>
+            <Table responsive striped hover>
                 <thead>
                 <tr>
                     <th>Repository</th>
