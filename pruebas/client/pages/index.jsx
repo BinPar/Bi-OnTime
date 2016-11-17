@@ -21,7 +21,7 @@ export default class Index extends React.Component {
 						<Tab eventKey={1} title="Estimaciones">
 							<Estimaciones />
 						</Tab>
-						<Tab eventKey={2} title="No facturable"></Tab>
+						<Tab eventKey={2} title="No imputable"></Tab>
 						<Tab eventKey={3} title="Planificación"></Tab>
 					</Tabs>
 				}

@@ -9,6 +9,9 @@ export default class Estimaciones extends TrackerReact(React.Component) {
         super(props);
 
         this.state = {
+            subscription: {
+                estimations: BP.DB.estimations.getEstimations
+            },
             issuesLoaded: false
         };
 
@@ -29,6 +32,10 @@ export default class Estimaciones extends TrackerReact(React.Component) {
         }
     }
 
+    componentWillUnmount() {
+        this.state.subscription.estimations.stop();
+    }
+
     render() {
         if (!Meteor.userId()) {
             return <div>No tienes acceso.</div>;
@@ -47,6 +54,7 @@ export default class Estimaciones extends TrackerReact(React.Component) {
                     <th>Labels</th>
                     <th>Created by</th>
                     <th>Date</th>
+                    <th>State</th>
                     <th>Actions</th>
                 </tr>
                 </thead>

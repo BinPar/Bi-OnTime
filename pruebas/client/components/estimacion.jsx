@@ -59,14 +59,18 @@ export default class Estimacion extends React.Component {
             <td>{utils.formatDateTime(new Date(ISSUE.created_at))}</td>
 
             <td>
+
+            </td>
+
+            <td>
                 <ButtonToolbar>
-                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.minitaskPopUp}>
+                    <OverlayTrigger trigger="focus" placement="bottom" overlay={this.minitaskPopUp}>
                         <Button>Minitarea</Button>
                     </OverlayTrigger>
-                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.doEstimationPopUp}>
+                    <OverlayTrigger trigger="focus" placement="bottom" overlay={this.doEstimationPopUp}>
                         <Button>Estimar</Button>
                     </OverlayTrigger>
-                    <OverlayTrigger trigger="click" placement="bottom" overlay={this.requestInfoPopUp}>
+                    <OverlayTrigger trigger="focus" placement="bottom" overlay={this.requestInfoPopUp}>
                         <Button>Necesito más info.</Button>
                     </OverlayTrigger>
                 </ButtonToolbar>
@@ -92,8 +96,6 @@ export default class Estimacion extends React.Component {
         this.setState({
             showPanel: this.state.showPanel != "estimation" ? "estimation" : null
         });
-
-
     }
 
     moreInfoClick() {

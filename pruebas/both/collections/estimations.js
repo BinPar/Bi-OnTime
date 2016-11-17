@@ -17,8 +17,12 @@ export default class Estimations extends Collection {
                 label: "Issue number"
             },
             user: {
-                type: Number,
+                type: String,
                 label: "User id"
+            },
+            ghUser: {
+                type: Number,
+                label: "GitHub user id"
             },
             duration: {
                 type: Number,
@@ -49,5 +53,12 @@ export default class Estimations extends Collection {
                 }
             }
         });
+    }
+
+    query_getEstimations(userId) {
+        if(!Roles.userIsInRole(userId, ['user', 'manager', 'admin'])) throw new Meteor.Error(401, `Acceso denegado al usuario ${userId}.`);
+
+        // ToDo: filtrar por listado de repos e issues
+        return this.find({user: userId});
     }
 }
